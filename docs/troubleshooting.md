@@ -42,6 +42,19 @@ are reproduced from the area name alone, so no further files are needed.
 The chosen path is stored as `iso_path` under `[paths]` in `UserData/Config.toml`. If the file was moved, pick it again
 in the dialog or in **F1 > Diagnostics > Select disc image**. Supported: `.iso`, `.rvz`, `.wbfs`, `.gcz`, `.wia`, `.ciso`.
 
+**Running through Proton or Wine (Linux): the disc image is asked at every start even after picking it**
+The open-file dialog can return a shell path such as `::{20d04fe0-3aea-1069-a2d8-08002b30309d}\Metroid Prime 3` when
+the item was picked from a location like *This PC* or one of the shortcuts listed there. The port cannot open that as
+a file, so the check fails and the prompt comes back. Write the disc image's real path into `UserData/Config.toml`
+instead; through Proton, Linux paths are reachable as `Z:/` (with `/` separators, or `Z:\` ones):
+
+```toml
+[paths]
+iso_path = "Z:/home/you/Dumps/Metroid Prime 3 - Corruption (USA).rvz"
+```
+
+Write the full path including its extension, then start the game again.
+
 **"The disc image is not Metroid Prime 3: Corruption (USA)"**
 Only the USA disc, game ID `RM3E01`, revision 0, is supported. PAL and Japanese discs, and the *Metroid Prime Trilogy*
 disc, have different code and will not work.
